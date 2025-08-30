@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Image Compressor – Fast, Free, SEO‑Optimized</title>
+  <meta name="description" content="Compress and optimize images in your browser. Adjust quality, format, and size. 100% client‑side, privacy‑friendly, responsive UI, and AdSense‑ready." />
+  <link rel="canonical" href="https://example.com/image-compressor" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Online Image Compressor" />
+  <meta property="og:description" content="Compress and optimize images in your browser. Adjust quality, format, and size." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/image-compressor" />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD: WebApplication Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Online Image Compressor",
+    "url": "https://example.com/image-compressor",
+    "applicationCategory": "Multimedia",
+    "description": "Browser-based image compression and optimization tool with adjustable quality and format.",
+    "operatingSystem": "Any",
+    "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+  <!-- Minimal, responsive CSS (utility-ish) -->
+  <style>
+    :root{
+      --bg: #0b1020; --card:#121830; --muted:#9aa3b2; --text:#e7ecf6; --brand:#6ee7b7; --accent:#60a5fa;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--text)}
+    a{color:var(--accent)}
+    .container{max-width:1100px; margin:0 auto; padding:clamp(12px, 2.5vw, 28px)}
+    header{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+    .logo .dot{width:12px; height:12px; background:linear-gradient(135deg,var(--brand),var(--accent)); border-radius:999px; display:inline-block}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .grid{display:grid; gap:16px}
+    @media (min-width: 960px){ .grid-2{grid-template-columns: 2fr 1fr} }
+    main{margin-top:18px}
+    .controls{display:grid; gap:12px; grid-template-columns: 1fr;}
+    .row{display:grid; gap:10px; grid-template-columns: 1fr 110px; align-items:center}
+    .row > label{font-size:.95rem; color:var(--muted)}
+    input[type="range"]{width:100%}
+    .pill{background:rgba(255,255,255,.06); padding:8px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.09)}
+    .dropzone{border:2px dashed rgba(255,255,255,.15); border-radius:16px; padding:24px; text-align:center; cursor:pointer; transition:.2s}
+    .dropzone:hover{border-color:var(--brand); background:rgba(110,231,183,.06)}
+    .thumbs{display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:12px}
+    .thumb{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden}
+    .thumb img{width:100%; height:160px; object-fit:cover; display:block}
+    .thumb footer{display:flex; justify-content:space-between; gap:8px; padding:10px; font-size:.85rem; color:var(--muted)}
+    .actions{display:flex; gap:10px; flex-wrap:wrap}
+    button{appearance:none; border:none; background:linear-gradient(135deg,var(--brand),#34d399); color:#042011; font-weight:700; padding:12px 14px; border-radius:12px; cursor:pointer}
+    button.secondary{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.12)}
+    .stats{display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); font-size:.92rem}
+    .advert{display:block; background:rgba(255,255,255,.03); border:1px dashed rgba(255,255,255,.15); border-radius:14px; min-height:90px; padding:10px; text-align:center}
+    .advert small{color:var(--muted)}
+    .stick{position:sticky; top:16px}
+    footer.site{margin:40px 0; color:var(--muted); font-size:.9rem}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+
+  <!-- Google AdSense (Replace data-ad-client with your own publisher ID) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"
+          crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo" aria-label="Online Image Compressor">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Image&nbsp;Compressor</span>
+      </div>
+      <nav aria-label="Breadcrumb"><a href="/" rel="home">Home</a> › <strong>Compressor</strong></nav>
+    </header>
+
+    <!-- Top Leaderboard Ad -->
+    <section class="advert card" aria-label="Advertisement: Top">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      <small>Ad space (Top)</small>
+    </section>
+
+    <main class="grid grid-2">
+      <section class="card" id="app" aria-label="Image compression tool">
+        <div style="padding:18px 18px 10px">
+          <h1 style="margin:.1rem 0 0.5rem 0">Compress Images Online</h1>
+          <p style="color:var(--muted); margin:0">Drag & drop or select images. Adjust quality, format, and size. All processing happens in your browser – your images never leave your device.</p>
+        </div>
+
+        <div style="padding:0 18px 18px" class="grid" id="uploader">
+          <label for="file-input" class="dropzone" id="dropzone">
+            <input id="file-input" class="sr-only" type="file" accept="image/*" multiple>
+            <strong>Drop images here</strong>
+            <div style="color:var(--muted); font-size:.95rem">or click to browse</div>
+          </label>
+
+          <div class="controls card" style="padding:16px" aria-label="Compression controls">
+            <div class="row">
+              <label for="quality">Quality (<span id="quality-val">80</span>%)</label>
+              <input type="range" id="quality" min="1" max="100" value="80" aria-label="Compression quality">
+            </div>
+            <div class="row">
+              <label for="format">Output format</label>
+              <select id="format" class="pill" aria-label="Output format">
+                <option value="auto" selected>Auto (keep / best)</option>
+                <option value="image/jpeg">JPEG</option>
+                <option value="image/webp">WebP</option>
+                <option value="image/png">PNG</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="maxWidth">Max width (px)</label>
+              <input id="maxWidth" class="pill" type="number" inputmode="numeric" placeholder="e.g. 1920">
+            </div>
+            <div class="row">
+              <label for="maxHeight">Max height (px)</label>
+              <input id="maxHeight" class="pill" type="number" inputmode="numeric" placeholder="e.g. 1080">
+            </div>
+            <div class="actions">
+              <button id="compress-btn" aria-label="Compress images">Compress</button>
+              <button id="download-all" class="secondary" aria-label="Download all compressed images">Download All</button>
+              <button id="clear" class="secondary" aria-label="Clear images">Clear</button>
+            </div>
+            <div class="stats" id="stats" aria-live="polite"></div>
+          </div>
+
+          <div class="thumbs" id="thumbs" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <aside class="grid stick" style="gap:16px">
+        <!-- Right rail ad -->
+        <section class="advert card" aria-label="Advertisement: Sidebar">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="2345678901" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+          <small>Ad space (Sidebar)</small>
+        </section>
+
+        <section class="card" style="padding:16px">
+          <h2 style="margin-top:0">Tips for best results</h2>
+          <ul style="color:var(--muted); line-height:1.7">
+            <li>Use <strong>WebP</strong> for the smallest files with good quality.</li>
+            <li>Resize large images (e.g., 4000px → 1920px) to save more.</li>
+            <li>Batch process multiple images and download them together.</li>
+          </ul>
+        </section>
+
+        <!-- In-content ad -->
+        <section class="advert card" aria-label="Advertisement: In-content">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="3456789012" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+          <small>Ad space (In-content)</small>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="site">
+      <p>© <span id="year"></span> Image Compressor. Fast, private, and free.</p>
+    </footer>
+  </div>
+
+  <!-- JSZip for bulk download (optional) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+  <script>
+  // --------- Configuration: set your AdSense IDs in one place ---------
+  const ADSENSE_CLIENT = 'ca-pub-xxxxxxxxxxxxxxxx'; // <-- replace with your publisher ID
+  const AD_SLOTS = {
+    top: '1234567890',
+    sidebar: '2345678901',
+    incontent: '3456789012'
+  };
+
+  function applyAdIds(){
+    document.querySelectorAll('ins.adsbygoogle').forEach((el)=>{
+      if(ADSENSE_CLIENT) el.setAttribute('data-ad-client', ADSENSE_CLIENT);
+      const key = el.parentElement?.getAttribute('aria-label')?.toLowerCase();
+      if(key?.includes('top')) el.setAttribute('data-ad-slot', AD_SLOTS.top);
+      if(key?.includes('sidebar')) el.setAttribute('data-ad-slot', AD_SLOTS.sidebar);
+      if(key?.includes('in-content')) el.setAttribute('data-ad-slot', AD_SLOTS.incontent);
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+    });
+  }
+
+  // --------------- Utility helpers ---------------
+  const $ = (sel, ctx=document)=>ctx.querySelector(sel);
+  const $$ = (sel, ctx=document)=>Array.from(ctx.querySelectorAll(sel));
+  const byId = (id)=>document.getElementById(id);
+  const toQuality = (val)=> Math.min(1, Math.max(0.01, Number(val)/100));
+  const readable = (bytes)=>{
+    if(!bytes && bytes!==0) return '';
+    const units=['B','KB','MB','GB'];
+    let i=0; let num=bytes; while(num>=1024 && i<units.length-1){num/=1024;i++}
+    return `${num.toFixed(num<10 && i>0?2:1)} ${units[i]}`;
+  };
+
+  // Maintain state
+  const state = {
+    files: [], // {file, name, originalBytes, blob, url, width, height}
+    compressed: []
+  };
+
+  // --------------- Uploader & DnD ---------------
+  const dropzone = byId('dropzone');
+  const fileInput = byId('file-input');
+  ['dragenter','dragover'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.style.borderColor='var(--brand)'}));
+  ;['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev, e=>{e.preventDefault(); dropzone.style.borderColor='rgba(255,255,255,.15)'}));
+  dropzone.addEventListener('drop', (e)=>{
+    const files = Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));
+    if(files.length) handleFiles(files);
+  });
+  dropzone.addEventListener('click', ()=>fileInput.click());
+  fileInput.addEventListener('change', (e)=>{
+    const files = Array.from(e.target.files||[]);
+    if(files.length) handleFiles(files);
+    fileInput.value = '';
+  });
+
+  async function handleFiles(files){
+    for(const file of files){
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = url;
+      await img.decode().catch(()=>{});
+
+      const item = { file, name: file.name, originalBytes: file.size, url, width: img.naturalWidth, height: img.naturalHeight };
+      state.files.push(item);
+      addThumb(item);
+    }
+    updateStats();
+  }
+
+  // --------------- Thumbnails ---------------
+  const thumbs = byId('thumbs');
+  function addThumb(item){
+    const el = document.createElement('div');
+    el.className = 'thumb';
+    el.innerHTML = `
+      <img loading="lazy" alt="${item.name}" src="${item.url}">
+      <footer>
+        <span title="${item.width}×${item.height}">${item.width}×${item.height}</span>
+        <span>${readable(item.originalBytes)}</span>
+      </footer>
+    `;
+    thumbs.appendChild(el);
+  }
+
+  // --------------- Compression ---------------
+  const qualityRange = byId('quality');
+  const qualityVal = byId('quality-val');
+  qualityRange.addEventListener('input', ()=> qualityVal.textContent = qualityRange.value);
+
+  async function compressAll(){
+    if(!state.files.length) return;
+    state.compressed = [];
+    const q = toQuality(qualityRange.value);
+    const format = byId('format').value;
+    const maxW = Number(byId('maxWidth').value)||Infinity;
+    const maxH = Number(byId('maxHeight').value)||Infinity;
+
+    for(const item of state.files){
+      const res = await compressOne(item, {quality:q, format, maxW, maxH});
+      state.compressed.push(res);
+    }
+    updateStats();
+    renderCompressedThumbs();
+  }
+
+  async function compressOne(item, opts){
+    const bitmap = await createImageBitmap(item.file, { imageOrientation: 'from-image' }).catch(()=>null);
+    const w0 = bitmap? bitmap.width : item.width;
+    const h0 = bitmap? bitmap.height: item.height;
+    // Resize maintaining aspect ratio
+    let w = w0, h = h0;
+    if(Number.isFinite(opts.maxW) || Number.isFinite(opts.maxH)){
+      if(w > opts.maxW){ h = Math.round(h * (opts.maxW / w)); w = Math.round(opts.maxW); }
+      if(h > opts.maxH){ w = Math.round(w * (opts.maxH / h)); h = Math.round(opts.maxH); }
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    // Better scaling
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(bitmap || await imgFromURL(item.url), 0, 0, w, h);
+
+    // Decide output type
+    const type = (function(){
+      if(opts.format && opts.format !== 'auto') return opts.format;
+      // Auto: keep type unless PNG -> use PNG for transparency else JPEG; Prefer WebP for photos
+      if(item.file.type === 'image/png') return 'image/png';
+      try{ if(canvas.toDataURL('image/webp').startsWith('data:image/webp')) return 'image/webp'; }catch(e){}
+      return 'image/jpeg';
+    })();
+
+    const blob = await new Promise(res=>canvas.toBlob(res, type, opts.quality));
+    const url = URL.createObjectURL(blob);
+    return { ...item, blob, url, type, width:w, height:h, saved: item.originalBytes - blob.size };
+  }
+
+  function imgFromURL(url){
+    return new Promise((resolve)=>{ const i = new Image(); i.src = url; i.onload=()=>resolve(i); });
+  }
+
+  function renderCompressedThumbs(){
+    thumbs.innerHTML = '';
+    for(const it of state.compressed){
+      const el = document.createElement('div');
+      el.className = 'thumb';
+      const savedPct = Math.max(0, 100 * (it.saved/it.originalBytes)).toFixed(1);
+      el.innerHTML = `
+        <img loading="lazy" alt="${it.name} compressed preview" src="${it.url}">
+        <footer>
+          <span>${readable(it.blob.size)} (−${savedPct}%)</span>
+          <a href="${it.url}" download="compressed-${safeName(it.name, it.type)}" style="text-decoration:none">Download</a>
+        </footer>
+      `;
+      thumbs.appendChild(el);
+    }
+  }
+
+  function safeName(name, type){
+    const base = name.replace(/\.[^.]+$/, '');
+    const ext = type.split('/')[1] || 'jpg';
+    return `${base}.${ext}`;
+  }
+
+  // --------------- Stats & Actions ---------------
+  const statsEl = byId('stats');
+  function updateStats(){
+    const count = state.files.length;
+    const before = state.files.reduce((a,c)=>a+(c.originalBytes||0),0);
+    const after = state.compressed.reduce((a,c)=>a+(c.blob?.size||0),0);
+    const saved = Math.max(0, before - after);
+    statsEl.textContent = count ? `Images: ${count} • Before: ${readable(before)}${after?` • After: ${readable(after)} • Saved: ${readable(saved)} (${((saved/before)*100||0).toFixed(1)}%)`:''}` : '';
+  }
+
+  byId('compress-btn').addEventListener('click', compressAll);
+  byId('clear').addEventListener('click', ()=>{
+    state.files.forEach(f=>URL.revokeObjectURL(f.url));
+    state.compressed.forEach(f=>URL.revokeObjectURL(f.url));
+    state.files=[]; state.compressed=[]; thumbs.innerHTML=''; updateStats();
+  });
+
+  // Download all as ZIP
+  byId('download-all').addEventListener('click', async ()=>{
+    if(!state.compressed.length){ await compressAll(); if(!state.compressed.length) return; }
+    const zip = new JSZip();
+    for(const it of state.compressed){ zip.file(safeName(it.name, it.type), it.blob); }
+    const blob = await zip.generateAsync({type:'blob'});
+    saveAs(blob, 'compressed-images.zip');
+  });
+
+  // --------------- Progressive enhancement ---------------
+  document.addEventListener('DOMContentLoaded', ()=>{
+    applyAdIds();
+    qualityVal.textContent = qualityRange.value;
+    byId('year').textContent = new Date().getFullYear();
+  });
+
+  // --------------- Basic Service Worker (optional) ---------------
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+      const sw = `self.addEventListener('install', e=>self.skipWaiting());self.addEventListener('activate', e=>clients.claim());self.addEventListener('fetch', e=>{e.respondWith(fetch(e.request).catch(()=>new Response('',{status:504})))})`;
+      const blob = new Blob([sw], {type:'text/javascript'});
+      const url = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(url).catch(()=>{});
+    });
+  }
+  </script>
+</body>
+</html>
